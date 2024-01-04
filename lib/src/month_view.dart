@@ -1,4 +1,4 @@
-part of clean_nepali_calendar;
+part of '../clean_nepali_calendar.dart';
 
 const Duration _kMonthScrollDuration = Duration(milliseconds: 200);
 
@@ -210,54 +210,58 @@ class _MonthViewState extends State<_MonthView>
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        _CalendarHeader(
-          onHeaderLongPressed: widget.onHeaderLongPressed,
-          onHeaderTapped: widget.onHeaderTapped,
-          language: widget.language,
-          handleNextMonth: _handleNextMonth,
-          handlePreviousMonth: _handlePreviousMonth,
-          headerStyle: widget.headerStyle,
-          chevronOpacityAnimation: _chevronOpacityAnimation,
-          isDisplayingFirstMonth: _isDisplayingFirstMonth,
-          previousMonthDate: _previousMonthDate,
-          date: _currentDisplayedMonthDate,
-          isDisplayingLastMonth: _isDisplayingLastMonth,
-          nextMonthDate: _nextMonthDate,
-          changeToToday: () {
-            widget.onChanged(NepaliDateTime.now());
-          },
-          headerBuilder: widget.headerBuilder,
-        ),
-        Flexible(
-          flex: 1,
-          child: Semantics(
-            sortKey: _MonthPickerSortKey.calendar,
-            child: NotificationListener<ScrollStartNotification>(
-              onNotification: (_) {
-                _chevronOpacityController.forward();
-                return false;
-              },
-              child: NotificationListener<ScrollEndNotification>(
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * .65,
+      child: Column(
+        children: <Widget>[
+          _CalendarHeader(
+            onHeaderLongPressed: widget.onHeaderLongPressed,
+            onHeaderTapped: widget.onHeaderTapped,
+            language: widget.language,
+            handleNextMonth: _handleNextMonth,
+            handlePreviousMonth: _handlePreviousMonth,
+            headerStyle: widget.headerStyle,
+            chevronOpacityAnimation: _chevronOpacityAnimation,
+            isDisplayingFirstMonth: _isDisplayingFirstMonth,
+            previousMonthDate: _previousMonthDate,
+            date: _currentDisplayedMonthDate,
+            isDisplayingLastMonth: _isDisplayingLastMonth,
+            nextMonthDate: _nextMonthDate,
+            changeToToday: () {
+              widget.onChanged(NepaliDateTime.now());
+            },
+            headerBuilder: widget.headerBuilder,
+          ),
+          Flexible(
+            flex: 1,
+            child: Semantics(
+              sortKey: _MonthPickerSortKey.calendar,
+              child: NotificationListener<ScrollStartNotification>(
                 onNotification: (_) {
-                  _chevronOpacityController.reverse();
+                  _chevronOpacityController.forward();
                   return false;
                 },
-                child: PageView.builder(
-                  dragStartBehavior: widget.dragStartBehavior,
-                  key: ValueKey<NepaliDateTime>(widget.selectedDate),
-                  controller: _dayPickerController,
-                  scrollDirection: Axis.horizontal,
-                  itemCount: _monthDelta(widget.firstDate, widget.lastDate) + 1,
-                  itemBuilder: _buildItems,
-                  onPageChanged: _handleMonthPageChanged,
+                child: NotificationListener<ScrollEndNotification>(
+                  onNotification: (_) {
+                    _chevronOpacityController.reverse();
+                    return false;
+                  },
+                  child: PageView.builder(
+                    dragStartBehavior: widget.dragStartBehavior,
+                    key: ValueKey<NepaliDateTime>(widget.selectedDate),
+                    controller: _dayPickerController,
+                    scrollDirection: Axis.horizontal,
+                    itemCount:
+                        _monthDelta(widget.firstDate, widget.lastDate) + 1,
+                    itemBuilder: _buildItems,
+                    onPageChanged: _handleMonthPageChanged,
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
