@@ -2,7 +2,7 @@ part of '../clean_nepali_calendar.dart';
 
 typedef HeaderDayBuilder = Widget Function(String headerName, int dayNumber);
 
-const double _kDayPickerRowHeight = 40.0;
+const double _kDayPickerRowHeight = 50.0;
 
 class _DayPickerGridDelegate extends SliverGridDelegate {
   const _DayPickerGridDelegate();
@@ -249,13 +249,13 @@ final List<String> dayHeaderHalfNameNepali = [
 ];
 
 final List<String> dayHeaderLetterEnglish = [
-  'S',
-  'M',
-  'T',
-  'W',
-  'T',
-  'F',
-  'S',
+  'Su',
+  'Mo',
+  'Tu',
+  'We',
+  'TH',
+  'Fi',
+  'Sa',
 ];
 
 final List<String> dayHeaderLetterNepali = [
