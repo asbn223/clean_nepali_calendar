@@ -1,4 +1,4 @@
-part of clean_nepali_calendar;
+part of '../clean_nepali_calendar.dart';
 
 const Duration _kMonthScrollDuration = Duration(milliseconds: 200);
 

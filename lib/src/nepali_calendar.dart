@@ -1,4 +1,4 @@
-part of clean_nepali_calendar;
+part of '../clean_nepali_calendar.dart';
 
 typedef TextBuilder = String Function(NepaliDateTime date, Language language);
 typedef HeaderGestureCallback = void Function(NepaliDateTime focusedDay);

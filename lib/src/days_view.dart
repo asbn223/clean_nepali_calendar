@@ -132,7 +132,7 @@ class _DaysView extends StatelessWidget {
     final labels = <Widget>[];
     if (calendarStyle.renderDaysOfWeek) {
       labels.addAll(
-        _getDayHeaders(language, themeData.textTheme.caption, headerDayType,
+        _getDayHeaders(language, themeData.textTheme.labelMedium, headerDayType,
             headerDayBuilder),
       );
     }

@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,6 +21,8 @@ class MyApp extends StatelessWidget {
 class HomePage extends StatelessWidget {
   final NepaliCalendarController _nepaliCalendarController =
       NepaliCalendarController();
+
+  HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +43,7 @@ class HomePage extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(top: 5.0),
                       child: Text(
-                        '$_',
+                        '_',
                         style:
                             TextStyle(color: (index == 6) ? Colors.red : null),
                       ),
@@ -49,12 +53,8 @@ class HomePage extends StatelessWidget {
               // headerBuilder: (_,__,___,____,______)=>Text("header"),
               headerDayType: HeaderDayType.fullName,
               controller: _nepaliCalendarController,
-              onHeaderLongPressed: (date) {
-                print("header long pressed $date");
-              },
-              onHeaderTapped: (date) {
-                print("header tapped $date");
-              },
+              onHeaderLongPressed: (date) {},
+              onHeaderTapped: (date) {},
               calendarStyle: CalendarStyle(
                 // weekEndTextColor : Colors.green,
                 selectedColor: Colors.deepOrange,
@@ -80,9 +80,7 @@ class HomePage extends StatelessWidget {
               lastDate: last,
               language: Language.nepali,
 
-              onDaySelected: (day) {
-                print(day.toString());
-              },
+              onDaySelected: (day) {},
 
               // display the english date along with nepali date.
               dateCellBuilder: cellBuilder,
@@ -96,7 +94,7 @@ class HomePage extends StatelessWidget {
   Widget cellBuilder(isToday, isSelected, isDisabled, nepaliDate, label, text,
       calendarStyle, isWeekend) {
     // print(isSelected);
-    Decoration _buildCellDecoration() {
+    Decoration buildCellDecoration() {
       if (isSelected && isToday) {
         return BoxDecoration(
             // shape: BoxShape.circle,
@@ -128,7 +126,7 @@ class HomePage extends StatelessWidget {
     return AnimatedContainer(
       padding: EdgeInsets.all(3),
       duration: Duration(milliseconds: 2000),
-      decoration: _buildCellDecoration(),
+      decoration: buildCellDecoration(),
       child: Center(
         child: Column(
           children: [
